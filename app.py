@@ -26,11 +26,6 @@ model = ChatOpenAI(
   default_headers = {"x-foo": "true"}
 )
 
-messages = [
- SystemMessage(content="請你一律用繁體中文回答以下問題。"),
- HumanMessage(content=""),
-]
-
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
@@ -40,7 +35,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text(event):
-    messages[1].content = event.message.text
+
+    messages = [
+        SystemMessage(content="請你一律用繁體中文回答以下問題。"),
+        HumanMessage(content=event.message.text)
+    ]
 
     # LangChain 產生回覆（這裡固定回答）
     response = model.invoke(messages)
