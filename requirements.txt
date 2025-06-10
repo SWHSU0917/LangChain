@@ -1,0 +1,11 @@
+# Web 框架與伺服器
+flask>=2.3.0
+gunicorn>=21.2.0
+
+# 外部服務 SDK
+line-bot-sdk>=2.4.0
+openai>=1.13.3
+
+# LangChain 與擴充
+langchain>=0.2.0
+langchain-openai>=0.1.0
