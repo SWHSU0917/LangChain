@@ -33,15 +33,19 @@ def callback():
     handler.handle(body, signature)
     return "OK"
 
-messages = [
-    SystemMessage(content="請你一律用繁體中文回答以下問題。"),
-    HumanMessage(content="")
-]
+# messages = [
+#     SystemMessage(content="請你一律用繁體中文回答以下問題。"),
+#     HumanMessage(content="")
+# ]
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text(event):
 
-    messages[1].content = event.message.text
+    messages = [
+        SystemMessage(content="請你一律用繁體中文回答以下問題。"),
+        HumanMessage(content=event.message.text)
+    ]
+    #messages[1].content = event.message.text
 
     # LangChain 產生回覆（這裡固定回答）
     response = model.invoke(messages)
