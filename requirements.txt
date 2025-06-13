@@ -9,3 +9,6 @@ openai>=1.13.3
 # LangChain 與擴充
 langchain>=0.2.0
 langchain-openai>=0.1.0
+
+requests
+pydantic
